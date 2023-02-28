@@ -27,6 +27,14 @@ export const selectRandomOption = (options: any[]) => {
   return options[Math.round(Math.random() * (options.length - 1))];
 };
 
+export const colorPickerRGB = () => {
+  return {
+    red: `Red: ${Math.round(Math.random() * 255)}`,
+    green: `Green: ${Math.round(Math.random() * 255)}`,
+    blue: `Blue: ${Math.round(Math.random() * 255)}`
+  };
+};
+
 console.log(generateName());
 console.log(
   selectRandomOption(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])

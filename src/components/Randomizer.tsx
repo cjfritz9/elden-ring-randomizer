@@ -1,6 +1,14 @@
-import React, { useState } from 'react';
-import { Button, Container, Flex, Heading, Stack } from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
+import {
+  Button,
+  Container,
+  Flex,
+  Heading,
+  Stack,
+  Text
+} from '@chakra-ui/react';
 import SwitchOption from './SwitchOption';
+import RandomizerResults from '../models/Results';
 
 const Randomizer: React.FC = () => {
   const [appState, setAppState] = useState<'options' | 'results'>('options');
@@ -8,6 +16,14 @@ const Randomizer: React.FC = () => {
   const [bigEyesOption, setBigEyesOption] = useState(true);
   const [originOption, setOriginOption] = useState(true);
   const [keepsakeOption, setKeepsakeOption] = useState(true);
+  const [randomizerResults, setRandomizerResults] =
+    useState<RandomizerResults>();
+
+  useEffect(() => {
+    if (appState === 'results') {
+      // TODO: set randomizer results
+    }
+  }, [appState]);
 
   return (
     <Container
@@ -18,16 +34,7 @@ const Randomizer: React.FC = () => {
     >
       {appState === 'options' ? (
         <Stack w='100%' align='center'>
-          <Heading
-            w='100%'
-            fontSize='56px'
-            fontWeight='400'
-            textAlign='center'
-            fontFamily='Cormorant Garamond'
-            textShadow='0 0 3px #122244'
-          >
-            ELDEN RING CHARACTER RANDOMIZER
-          </Heading>
+          <Heading>ELDEN RING CHARACTER RANDOMIZER</Heading>
           <Stack
             pt='4rem'
             maxW='420px'
@@ -75,32 +82,17 @@ const Randomizer: React.FC = () => {
         </Stack>
       ) : appState === 'results' ? (
         <Stack>
-          <Heading
-            w='100%'
-            fontSize='56px'
-            fontWeight='400'
-            textAlign='center'
-            fontFamily='Cormorant Garamond'
-            textShadow='0 0 3px #122244'
-          >
-            YOUR HERO
-          </Heading>
+          <Heading>YOUR HERO</Heading>
           <Flex>
-            <Stack></Stack>
+            <Stack>
+              <Heading variant='subheading'>CREATE CHARACTER</Heading>
+              <Text>Name: </Text>
+            </Stack>
           </Flex>
         </Stack>
       ) : (
         <Stack>
-          <Heading
-            w='100%'
-            fontSize='56px'
-            fontWeight='400'
-            textAlign='center'
-            fontFamily='Cormorant Garamond'
-            textShadow='0 0 3px #122244'
-          >
-            LOADING
-          </Heading>
+          <Heading>LOADING</Heading>
         </Stack>
       )}
     </Container>
