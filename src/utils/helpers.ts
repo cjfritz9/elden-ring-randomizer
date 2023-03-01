@@ -1,4 +1,5 @@
 import * as UNG from 'unique-names-generator';
+import { RGB } from '../models/Results';
 
 const usedDictionaries = [
   UNG.adjectives,
@@ -27,11 +28,15 @@ export const selectRandomOption = (options: any[]) => {
   return options[Math.round(Math.random() * (options.length - 1))];
 };
 
-export const colorPickerRGB = () => {
+export const selectRandomNumber = (num = 255) => {
+  return Math.round(Math.random() * num);
+}
+
+export const colorPickerRGB = (): RGB => {
   return {
-    red: `Red: ${Math.round(Math.random() * 255)}`,
-    green: `Green: ${Math.round(Math.random() * 255)}`,
-    blue: `Blue: ${Math.round(Math.random() * 255)}`
+    red: `${Math.round(Math.random() * 255)}`,
+    green: `${Math.round(Math.random() * 255)}`,
+    blue: `${Math.round(Math.random() * 255)}`
   };
 };
 

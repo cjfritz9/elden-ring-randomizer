@@ -1,3 +1,5 @@
+import { RGB } from "./Results";
+
 export interface SwitchOptionProps {
   // name of the option
   option: string;
@@ -6,4 +8,10 @@ export interface SwitchOptionProps {
   // function that sets the toggle state and passes it back to the App
   setOption: (prev: any) => void;
   defaultIsChecked: boolean;
+}
+
+export interface ResultItemProps {
+  fieldName: string;
+  result: string | number | RGB | null | undefined;
+  colorResult?: boolean;
 }
