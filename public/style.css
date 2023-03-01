@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Poppins&display=swap');
+
+@font-face {
+  font-family: 'Quadrat Serial';
+  src: local('Quadrat-Serial-Regular'),
+    url('fonts/Quadrat-Serial-Regular.ttf') format('truetype');
+}
+
+* {
+  font-family: 'Cormorant Garamond', serif;
+  color: #ebc691;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ebc691;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ebc69175;
+}
