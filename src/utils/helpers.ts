@@ -30,7 +30,7 @@ export const selectRandomOption = (options: any[]) => {
 
 export const selectRandomNumber = (num = 255) => {
   return Math.round(Math.random() * num);
-}
+};
 
 export const colorPickerRGB = (): RGB => {
   return {
@@ -39,8 +39,3 @@ export const colorPickerRGB = (): RGB => {
     blue: `${Math.round(Math.random() * 255)}`
   };
 };
-
-console.log(generateName());
-console.log(
-  selectRandomOption(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])
-);

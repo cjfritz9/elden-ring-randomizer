@@ -24,6 +24,7 @@ import {
   selectRandomOption
 } from '../utils/helpers';
 import ResultItem from './ResultItem';
+import { openai } from '../openai/api';
 
 const Randomizer: React.FC = () => {
   const [appState, setAppState] = useState<'options' | 'results'>('options');
@@ -255,6 +256,26 @@ const Randomizer: React.FC = () => {
     }
   }, [appState]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log(openai);
+      
+      const response = await openai.createChatCompletion({
+        model: 'gpt-3.5-turbo',
+        messages: [
+          { role: 'assistant', content: 'You are a name generator' },
+          {
+            role: 'user',
+            content:
+              'Generate a first and last name for a fantasy character with a maximum character length of 16. Use any, but not all, of these dictionaries: colors, adjectives, medieval, evil, holy. Limit response to only the first and last name.'
+          }
+        ]
+      });
+      console.log(response);
+    };
+    fetchData()
+  }, []);
+
   return (
     <Container
       minW='100%'
@@ -365,7 +386,6 @@ const Randomizer: React.FC = () => {
                       result={results.detailedAppearance.alterSkinColor}
                       colorResult
                     />
-                    <Accordion allowToggle></Accordion>
                   </Stack>
                 </AccordionPanel>
               </AccordionItem>

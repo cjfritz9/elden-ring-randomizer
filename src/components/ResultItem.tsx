@@ -8,7 +8,6 @@ const ResultItem: React.FC<ResultItemProps> = ({
   result,
   colorResult = false
 }) => {
-  console.log(result)
   if (colorResult && result && typeof result === 'object') {
     return (
       <Flex justify='space-between' align='baseline'>
