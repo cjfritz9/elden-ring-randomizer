@@ -7,25 +7,15 @@ import {
   AccordionPanel,
   Button,
   Container,
-  Divider,
   Flex,
   Grid,
   Heading,
-  Stack,
-  Text,
-  Tooltip
+  Stack
 } from '@chakra-ui/react';
 import SwitchOption from './SwitchOption';
 import RandomizerResults from '../models/Results';
-import {
-  colorPickerRGB,
-  generateCharData,
-  generateName,
-  selectRandomNumber,
-  selectRandomOption
-} from '../utils/helpers';
+import { generateCharData } from '../utils/helpers';
 import ResultItem from './ResultItem';
-import { fetchData } from '../openai/api';
 
 const Randomizer: React.FC = () => {
   const [appState, setAppState] = useState<'options' | 'results'>('options');
