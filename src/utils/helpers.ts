@@ -1,4 +1,5 @@
 import * as UNG from 'unique-names-generator';
+import { NamePrompt } from '../models/Prompts';
 import { RGB } from '../models/Results';
 
 const usedDictionaries = [
@@ -24,6 +25,16 @@ export const generateName = () => {
   return UNG.uniqueNamesGenerator(config);
 };
 
+export const validateName = (name: string) => {
+  if (name.toLowerCase().includes('sorry')) {
+    return 'Error, Try Again'
+  }
+  if (name.length > 16) {
+    name = name.slice(0, 15);
+  }
+  return name;
+}
+
 export const selectRandomOption = (options: any[]) => {
   return options[Math.round(Math.random() * (options.length - 1))];
 };
@@ -40,6 +51,23 @@ export const colorPickerRGB = (): RGB => {
   };
 };
 
+export const createChatPrompt = (promptType: NamePrompt) => {
+  if (promptType === 'Fantasy') {
+    return 'Medieval Fantasy';
+  }
+  if (promptType === 'Heroic') {
+    return 'Dark Heroic';
+  }
+  if (promptType === 'GOT') {
+    return 'Game of Thrones Characters Combined';
+  }
+  if (promptType === 'Twitch') {
+    return 'Fake BetterTTV Names';
+  }
+
+  return 'Absurdity';
+};
+
 export const generateCharData = (
   originOption: boolean,
   keepsakeOption: boolean,
@@ -48,7 +76,6 @@ export const generateCharData = (
 ) => {
   return {
     createCharacter: {
-      charName: generateName(),
       bodyType: selectRandomOption(['Type A', 'Type B']),
       age: selectRandomOption(['Young', 'Mature', 'Aged']),
       origin: originOption

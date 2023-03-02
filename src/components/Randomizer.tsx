@@ -14,8 +14,10 @@ import {
 } from '@chakra-ui/react';
 import SwitchOption from './SwitchOption';
 import RandomizerResults from '../models/Results';
-import { generateCharData } from '../utils/helpers';
+import { fetchRandomName } from '../openai/api';
+import { createChatPrompt, generateCharData } from '../utils/helpers';
 import ResultItem from './ResultItem';
+import NameOption from './NameOption';
 
 const Randomizer: React.FC = () => {
   const [appState, setAppState] = useState<'options' | 'results'>('options');
@@ -24,10 +26,19 @@ const Randomizer: React.FC = () => {
   const [originOption, setOriginOption] = useState(false);
   const [keepsakeOption, setKeepsakeOption] = useState(false);
   const [results, setResults] = useState<RandomizerResults>();
+  const [prompt, setPrompt] = useState<string>(createChatPrompt('Fantasy'));
+  const [charName, setCharName] = useState<string>();
+  const [fetchingName, setFetchingName] = useState(true);
+
+  const fetchNewName = async () => {
+    setFetchingName(true);
+    const name = await fetchRandomName(prompt);
+    setCharName(name);
+    setFetchingName(false);
+  };
 
   useEffect(() => {
     if (appState === 'results') {
-      // TODO: set randomizer results
       setResults(
         generateCharData(
           originOption,
@@ -36,9 +47,11 @@ const Randomizer: React.FC = () => {
           // bigEyesOption
         )
       );
+      fetchNewName();
     }
-    // fetchData()
   }, [appState]);
+
+  console.log(charName);
 
   return (
     <Container
@@ -81,6 +94,7 @@ const Randomizer: React.FC = () => {
                 setOption={setKeepsakeOption}
                 defaultIsChecked={false}
               />
+              <NameOption setOption={setPrompt} />
             </Stack>
             <Button
               _hover={{ filter: 'brightness(1.2)' }}
@@ -109,10 +123,7 @@ const Randomizer: React.FC = () => {
                 </AccordionButton>
                 <AccordionPanel>
                   <Stack gap='1rem'>
-                    <ResultItem
-                      fieldName='Name:'
-                      result={results.createCharacter.charName}
-                    />
+                    <ResultItem fieldName='Name:' result={fetchingName ? 'loading' : charName} />
                     <ResultItem
                       fieldName='Body Type:'
                       result={results.createCharacter.bodyType}
@@ -213,57 +224,6 @@ const Randomizer: React.FC = () => {
               </AccordionItem>
             </Accordion>
           </Stack>
-          <Grid
-            templateColumns={[
-              'repeat(1, 1fr)',
-              'repeat(1, 1fr)',
-              'repeat(2, 1fr)',
-              'repeat(2, 1fr)',
-              'repeat(3, 1fr)',
-              'repeat(3, 1fr)'
-            ]}
-          >
-            <Stack m='2rem'>
-              <Heading variant='subheading2'>Alter Face & Hair</Heading>
-              <Heading variant='subheading3'>Adjust Face Template</Heading>
-              <ResultItem
-                fieldName='Bone Structure:'
-                result={
-                  results.detailedAppearance.alterFaceAndHair.adjustFaceTemplate
-                    .boneStructure
-                }
-              />
-              <ResultItem
-                fieldName='Form Emphasis:'
-                result={
-                  results.detailedAppearance.alterFaceAndHair.adjustFaceTemplate
-                    .formEmphasis
-                }
-              />
-              <ResultItem
-                fieldName='Apparent Age:'
-                result={
-                  results.detailedAppearance.alterFaceAndHair.adjustFaceTemplate
-                    .apparentAge
-                }
-              />
-              <ResultItem
-                fieldName='Facial Aesthetic:'
-                result={
-                  results.detailedAppearance.alterFaceAndHair.adjustFaceTemplate
-                    .facialAesthetic
-                }
-              />
-              <Heading variant='subheading3'>Face Structure</Heading>
-              <ResultItem
-                fieldName='Bone Structure:'
-                result={
-                  results.detailedAppearance.alterFaceAndHair.adjustFaceTemplate
-                    .boneStructure
-                }
-              />
-            </Stack>
-          </Grid>
         </Stack>
       ) : (
         <Stack>

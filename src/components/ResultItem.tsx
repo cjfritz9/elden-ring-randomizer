@@ -1,5 +1,5 @@
 import React from 'react';
-import { Badge, Flex, Text, Tooltip } from '@chakra-ui/react';
+import { Badge, Flex, Skeleton, SkeletonText, Text, Tooltip } from '@chakra-ui/react';
 import { ResultItemProps } from '../models/Props';
 import { RGB } from '../models/Results';
 
@@ -70,7 +70,14 @@ const ResultItem: React.FC<ResultItemProps> = ({
     <Flex justify='space-between' align='center'>
       <Text>{fieldName}</Text>
       {result && typeof result !== 'object' ? (
-        <Text variant='randomOption'>{result}</Text>
+        
+          result === 'loading' ?
+          <Skeleton>
+            <Text variant='randomOption'>NewNameGoesHere</Text> 
+          </Skeleton>
+         : <Text variant='randomOption'>{result}</Text> 
+
+        
       ) : (
         <Tooltip
           label='You chose not to randomize this'

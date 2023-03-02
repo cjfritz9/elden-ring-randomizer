@@ -1,7 +1,7 @@
 import { defineStyle, defineStyleConfig } from '@chakra-ui/react';
 
 const heading1 = defineStyle({
-  fontSize: '64px',
+  fontSize: '56px',
   fontWeight: '400',
   textAlign: 'center',
   fontFamily: 'Cormorant Garamond',

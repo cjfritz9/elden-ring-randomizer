@@ -6,7 +6,6 @@ export interface RGB {
 
 interface RandomizerResults {
   createCharacter: {
-    charName: string;
     bodyType: string;
     age: string;
     origin?: string | null;
