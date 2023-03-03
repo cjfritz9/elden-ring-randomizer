@@ -6,7 +6,7 @@ const configuration = new Configuration({
   apiKey: ''
 });
 export const openai = new OpenAIApi(configuration);
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = process.env.API_URL;
 
 export const fetchRandomName = async (prompt: string) => {
   let randomName = '';
