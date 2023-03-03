@@ -41,6 +41,7 @@ const Randomizer: React.FC = () => {
   // };
 
   useEffect(() => {
+    window.scrollTo({top: 0, behavior: 'smooth'})
     if (appState === 'results') {
       setCharName(getRandomName(prompt));
       setResults(
@@ -55,8 +56,6 @@ const Randomizer: React.FC = () => {
     }
   }, [appState]);
 
-  console.log(charName);
-
   return (
     <Container
       minW='100%'
@@ -68,7 +67,7 @@ const Randomizer: React.FC = () => {
         <Stack w='100%' align='center'>
           <Heading variant='heading1'>ELDEN RING CHARACTER RANDOMIZER</Heading>
           <Stack
-            pt='4rem'
+            pt='2rem'
             maxW='420px'
             w='100%'
             gap={['1rem', '1rem', '2rem', '2rem', '2rem']}
@@ -126,25 +125,25 @@ const Randomizer: React.FC = () => {
                   </Flex>
                 </AccordionButton>
                 <AccordionPanel pos='relative'>
-                    <ResultItem
-                      fieldName='Name:'
-                      result={
-                        // fetchingName ? 'loading' :
-                        charName
-                      }
-                    />
-                    <Icon
-                      _hover={{ transform: 'scale(1.1)' }}
-                      transition='transform .5s ease-in-out'
-                      cursor='pointer'
-                      pos='absolute'
-                      top='25px'
-                      left='80px'
-                      fontSize='20px'
-                      fill='white'
-                      as={VscRefresh}
-                      onClick={() => setCharName(getRandomName(prompt))}
-                    />
+                  <ResultItem
+                    fieldName='Name:'
+                    result={
+                      // fetchingName ? 'loading' :
+                      charName
+                    }
+                  />
+                  <Icon
+                    _hover={{ transform: 'scale(1.1)' }}
+                    transition='transform .5s ease-in-out'
+                    cursor='pointer'
+                    pos='absolute'
+                    top='25px'
+                    left='80px'
+                    fontSize='20px'
+                    fill='white'
+                    as={VscRefresh}
+                    onClick={() => setCharName(getRandomName(prompt))}
+                  />
                   <ResultItem
                     fieldName='Body Type:'
                     result={results.createCharacter.bodyType}
@@ -1267,11 +1266,23 @@ const Randomizer: React.FC = () => {
                 </AccordionPanel>
               </AccordionItem>
             </Accordion>
+              <Button
+              _hover={{ filter: 'brightness(1.2)' }}
+              _active={{ transform: 'scale(.98)' }}
+              mt='2rem !important'
+              bgColor='#111E2E'
+              boxShadow='0 0 4px #EBC691'
+              fontWeight='bold'
+              letterSpacing='1px'
+              onClick={() => setAppState('options')}
+            >
+              RESTART
+            </Button>
           </Stack>
         </Stack>
       ) : (
         <Stack>
-          <Heading>LOADING</Heading>
+          <Heading w='100%' textAlign='center'>LOADING</Heading>
         </Stack>
       )}
     </Container>

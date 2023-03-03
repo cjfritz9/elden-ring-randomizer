@@ -1,7 +1,7 @@
 import { defineStyle, defineStyleConfig } from '@chakra-ui/react';
 
 const heading1 = defineStyle({
-  fontSize: '56px',
+  fontSize: ['32px','40px','56px'],
   fontWeight: '400',
   textAlign: 'center',
   fontFamily: 'Cormorant Garamond',
@@ -12,7 +12,7 @@ const heading1 = defineStyle({
 const subheading = defineStyle({
   fontFamily: 'Quadrat Serial',
   fontWeight: '400',
-  fontSize: '28px',
+  fontSize: ['20px','24px','28px'],
   textAlign: 'left',
   color: 'white'
 });
@@ -20,7 +20,7 @@ const subheading = defineStyle({
 const subheading2 = defineStyle({
   fontFamily: 'Quadrat Serial',
   fontWeight: '400',
-  fontSize: '24px',
+  fontSize: ['18px','20px','24px'],
   textAlign: 'left',
   color: 'white'
 });

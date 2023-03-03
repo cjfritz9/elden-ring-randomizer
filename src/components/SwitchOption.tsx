@@ -33,7 +33,7 @@ const SwitchOption: React.FC<SwitchOptionProps> = ({
   return (
     <Flex w='100%' justify='space-between' align='center'>
       <Tooltip label={info} fontFamily='Poppins' fontSize='16px'>
-        <Text cursor='help' fontSize='28px' textShadow='0 0 2px #122244'>
+        <Text fontSize={['20px','24px','28px']} cursor='help' textShadow='0 0 2px #122244'>
           {option}
         </Text>
       </Tooltip>
