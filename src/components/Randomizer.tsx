@@ -8,9 +8,10 @@ import {
   Button,
   Container,
   Flex,
-  Grid,
+  Icon,
   Heading,
-  Stack
+  Stack,
+  Box
 } from '@chakra-ui/react';
 import SwitchOption from './SwitchOption';
 import RandomizerResults from '../models/Results';
@@ -19,6 +20,7 @@ import { createChatPrompt, generateCharData } from '../utils/helpers';
 import ResultItem from './ResultItem';
 import NameOption from './NameOption';
 import { getRandomName, nameList } from '../db/names';
+import { VscRefresh } from 'react-icons/vsc';
 
 const Randomizer: React.FC = () => {
   const [appState, setAppState] = useState<'options' | 'results'>('options');
@@ -116,13 +118,24 @@ const Randomizer: React.FC = () => {
           <Heading variant='heading1'>YOUR HERO</Heading>
           <Stack w='100%' maxW='640px'>
             <Accordion defaultIndex={0} allowToggle>
-              <AccordionItem>
+              <AccordionItem pos='relative'>
                 <AccordionButton>
                   <Flex w='100%' justify='space-between' align='center'>
                     <Heading variant='subheading'>Create Character</Heading>
                     <AccordionIcon fontSize='32px' />
                   </Flex>
                 </AccordionButton>
+                  <Icon
+                    _hover={{ transform: 'scale(1.1)'}}
+                    transition='transform .5s ease-in-out'
+                    cursor='pointer'
+                  pos='absolute'
+                  top='74px'
+                  right='-12px'
+                  fontSize='20px'
+                  as={VscRefresh}
+                  onClick={() => setCharName(getRandomName(prompt))}
+                />
                 <AccordionPanel>
                   <ResultItem
                     fieldName='Name:'
