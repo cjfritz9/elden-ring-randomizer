@@ -62,16 +62,16 @@ const NameOption: React.FC<{ setOption: Function }> = ({ setOption }) => {
         <SliderMark value={-6} {...markStyles}>
           Fantasy
         </SliderMark>
-        <SliderMark value={21} {...markStyles}>
+        <SliderMark value={18.5} {...markStyles}>
           Heroic
         </SliderMark>
-        <SliderMark value={47} {...markStyles}>
+        <SliderMark value={45} {...markStyles}>
           G.O.T.
         </SliderMark>
-        <SliderMark value={71} {...markStyles}>
+        <SliderMark value={68.5} {...markStyles}>
           Twitch
         </SliderMark>
-        <SliderMark value={96} {...markStyles}>
+        <SliderMark value={98} {...markStyles}>
           ???
         </SliderMark>
         <SliderTrack>

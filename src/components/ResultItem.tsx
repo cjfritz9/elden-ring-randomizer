@@ -1,5 +1,12 @@
 import React from 'react';
-import { Badge, Flex, Skeleton, SkeletonText, Text, Tooltip } from '@chakra-ui/react';
+import {
+  Badge,
+  Flex,
+  Skeleton,
+  SkeletonText,
+  Text,
+  Tooltip
+} from '@chakra-ui/react';
 import { ResultItemProps } from '../models/Props';
 import { RGB } from '../models/Results';
 
@@ -10,8 +17,8 @@ const ResultItem: React.FC<ResultItemProps> = ({
 }) => {
   if (colorResult && result && typeof result === 'object') {
     return (
-      <Flex justify='space-between' align='baseline'>
-        <Text>{fieldName}</Text>
+      <Flex gap='.5rem' justify='space-between' my='.75rem' align='center'>
+        <Text fontSize={['16px', '16px', '18px']}>{fieldName}</Text>
         <Flex gap='.5rem'>
           <Tooltip fontFamily='Poppins' label='Red'>
             <Badge
@@ -20,9 +27,9 @@ const ResultItem: React.FC<ResultItemProps> = ({
               variant='outline'
               bgColor='#00000040'
               py='4px'
-              w='3rem'
+              w={['2.5rem', '2.5rem', '3rem']}
               textAlign='center'
-              fontSize='14px'
+              fontSize={['12px', '12px', '14px']}
               fontFamily='Poppins'
               colorScheme='red'
             >
@@ -36,9 +43,9 @@ const ResultItem: React.FC<ResultItemProps> = ({
               variant='outline'
               bgColor='#00000040'
               py='4px'
-              w='3rem'
+              w={['2.5rem', '2.5rem', '3rem']}
               textAlign='center'
-              fontSize='14px'
+              fontSize={['12px', '12px', '14px']}
               fontFamily='Poppins'
               colorScheme='green'
             >
@@ -52,9 +59,9 @@ const ResultItem: React.FC<ResultItemProps> = ({
               variant='outline'
               bgColor='#00000040'
               py='4px'
-              w='3rem'
+              w={['2.5rem', '2.5rem', '3rem']}
               textAlign='center'
-              fontSize='14px'
+              fontSize={['12px', '12px', '14px']}
               fontFamily='Poppins'
               colorScheme='blue'
             >
@@ -67,17 +74,20 @@ const ResultItem: React.FC<ResultItemProps> = ({
   }
 
   return (
-    <Flex justify='space-between' align='center'>
-      <Text>{fieldName}</Text>
+    <Flex justify='space-between' my='.75rem' align='center'>
+      <Text fontSize={['16px', '16px', '18px']}>{fieldName}</Text>
       {result && typeof result !== 'object' ? (
-        
-          result === 'loading' ?
+        result === 'loading' ? (
           <Skeleton>
-            <Text variant='randomOption'>NewNameGoesHere</Text> 
+            <Text variant='randomOption' fontSize={['16px', '16px', '18px']}>
+              NewNameGoesHere
+            </Text>
           </Skeleton>
-         : <Text variant='randomOption'>{result}</Text> 
-
-        
+        ) : (
+          <Text variant='randomOption' fontSize={['16px', '16px', '18px']}>
+            {result}
+          </Text>
+        )
       ) : (
         <Tooltip
           label='You chose not to randomize this'

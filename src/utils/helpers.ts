@@ -27,13 +27,13 @@ export const generateName = () => {
 
 export const validateName = (name: string) => {
   if (name.toLowerCase().includes('sorry')) {
-    return 'Error, Try Again'
+    return 'Error, Try Again';
   }
   if (name.length > 16) {
     name = name.slice(0, 15);
   }
   return name;
-}
+};
 
 export const selectRandomOption = (options: any[]) => {
   return options[Math.round(Math.random() * (options.length - 1))];
@@ -71,8 +71,8 @@ export const createChatPrompt = (promptType: NamePrompt) => {
 export const generateCharData = (
   originOption: boolean,
   keepsakeOption: boolean,
-  eyepatchOption: boolean
-  // bigEyesOption: boolean
+  eyepatchOption: boolean,
+  bigEyesOption: boolean
 ) => {
   return {
     createCharacter: {
@@ -148,7 +148,9 @@ export const generateCharData = (
           },
           eyes: {
             eyePosition: selectRandomNumber(),
-            eyeSize: selectRandomNumber(),
+            eyeSize: bigEyesOption
+              ? selectRandomNumber(130) + 125
+              : selectRandomNumber(),
             eyeSlant: selectRandomNumber(),
             eyeSpacing: selectRandomNumber()
           },
@@ -273,8 +275,8 @@ export const generateCharData = (
             expansion: selectRandomNumber(),
             flip: selectRandomOption(['On', 'Off'])
           },
-          eyepatch: eyepatchOption ? selectRandomNumber(4) : null,
-          eyepatchColor: eyepatchOption ? colorPickerRGB() : null
+          eyepatch: !eyepatchOption ? selectRandomNumber(4) : null,
+          eyepatchColor: !eyepatchOption ? colorPickerRGB() : null
         }
       },
       alterBody: {
