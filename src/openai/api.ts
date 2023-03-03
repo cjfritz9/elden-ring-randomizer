@@ -10,6 +10,8 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 export const fetchRandomName = async (prompt: string) => {
   let randomName = '';
+  console.log('api url', API_URL);
+  
   const response: { data: string } = await axios.post(
     API_URL || 'http://localhost:7373/chat-gpt/eldenring/names',
     { prompt },
