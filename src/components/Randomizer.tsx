@@ -109,7 +109,7 @@ const Randomizer: React.FC = () => {
               letterSpacing='1px'
               onClick={() => setAppState('results')}
             >
-              GET SILLY
+              GET WEIRD
             </Button>
           </Stack>
         </Stack>
@@ -118,32 +118,33 @@ const Randomizer: React.FC = () => {
           <Heading variant='heading1'>YOUR HERO</Heading>
           <Stack w='100%' maxW='640px'>
             <Accordion defaultIndex={0} allowToggle>
-              <AccordionItem pos='relative'>
+              <AccordionItem>
                 <AccordionButton>
                   <Flex w='100%' justify='space-between' align='center'>
                     <Heading variant='subheading'>Create Character</Heading>
                     <AccordionIcon fontSize='32px' />
                   </Flex>
                 </AccordionButton>
-                  <Icon
-                    _hover={{ transform: 'scale(1.1)'}}
-                    transition='transform .5s ease-in-out'
-                    cursor='pointer'
-                  pos='absolute'
-                  top='74px'
-                  right='-12px'
-                  fontSize='20px'
-                  as={VscRefresh}
-                  onClick={() => setCharName(getRandomName(prompt))}
-                />
-                <AccordionPanel>
-                  <ResultItem
-                    fieldName='Name:'
-                    result={
-                      // fetchingName ? 'loading' :
-                      charName
-                    }
-                  />
+                <AccordionPanel pos='relative'>
+                    <ResultItem
+                      fieldName='Name:'
+                      result={
+                        // fetchingName ? 'loading' :
+                        charName
+                      }
+                    />
+                    <Icon
+                      _hover={{ transform: 'scale(1.1)' }}
+                      transition='transform .5s ease-in-out'
+                      cursor='pointer'
+                      pos='absolute'
+                      top='25px'
+                      left='80px'
+                      fontSize='20px'
+                      fill='white'
+                      as={VscRefresh}
+                      onClick={() => setCharName(getRandomName(prompt))}
+                    />
                   <ResultItem
                     fieldName='Body Type:'
                     result={results.createCharacter.bodyType}
