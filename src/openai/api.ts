@@ -6,14 +6,12 @@ const configuration = new Configuration({
   apiKey: ''
 });
 export const openai = new OpenAIApi(configuration);
-const API_URL = process.env.API_URL;
 
 export const fetchRandomName = async (prompt: string) => {
   let randomName = '';
-  console.log('api url', API_URL);
-  
+
   const response: { data: string } = await axios.post(
-    API_URL || 'http://localhost:7373/chat-gpt/eldenring/names',
+    'https://us-central1-open-ai-server.cloudfunctions.net/chat-gpt-random-names/chat-gpt/eldenring/names',
     { prompt },
     {
       headers: {
