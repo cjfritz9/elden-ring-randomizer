@@ -15,15 +15,15 @@ import { createChatPrompt } from '../utils/helpers';
 const NameOption: React.FC<{ setOption: Function }> = ({ setOption }) => {
   const handleChange = (val: any) => {
     if (val === 25) {
-      setOption(createChatPrompt('Heroic'));
+      setOption('heroic');
     } else if (val === 50) {
-      setOption(createChatPrompt('GOT'));
+      setOption('got');
     } else if (val === 75) {
-      setOption(createChatPrompt('Twitch'));
+      setOption('twitch');
     } else if (val === 100) {
-      setOption(createChatPrompt('???'));
+      setOption('absurd');
     } else {
-      setOption(createChatPrompt('Fantasy'));
+      setOption('fantasy');
     }
     console.log(val);
   };

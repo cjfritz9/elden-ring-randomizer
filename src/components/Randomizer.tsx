@@ -18,6 +18,7 @@ import { fetchRandomName } from '../openai/api';
 import { createChatPrompt, generateCharData } from '../utils/helpers';
 import ResultItem from './ResultItem';
 import NameOption from './NameOption';
+import { getRandomName, nameList } from '../db/names';
 
 const Randomizer: React.FC = () => {
   const [appState, setAppState] = useState<'options' | 'results'>('options');
@@ -26,19 +27,20 @@ const Randomizer: React.FC = () => {
   const [originOption, setOriginOption] = useState(false);
   const [keepsakeOption, setKeepsakeOption] = useState(false);
   const [results, setResults] = useState<RandomizerResults>();
-  const [prompt, setPrompt] = useState<string>(createChatPrompt('Fantasy'));
+  const [prompt, setPrompt] = useState<nameList>('fantasy');
   const [charName, setCharName] = useState<string>();
   const [fetchingName, setFetchingName] = useState(true);
 
-  const fetchNewName = async () => {
-    setFetchingName(true);
-    const name = await fetchRandomName(prompt);
-    setCharName(name);
-    setFetchingName(false);
-  };
+  // const fetchNewName = async () => {
+  //   setFetchingName(true);
+  //   const name = await fetchRandomName(prompt);
+  //   setCharName(name);
+  //   setFetchingName(false);
+  // };
 
   useEffect(() => {
     if (appState === 'results') {
+      setCharName(getRandomName(prompt))
       setResults(
         generateCharData(
           originOption,
@@ -47,7 +49,7 @@ const Randomizer: React.FC = () => {
           // bigEyesOption
         )
       );
-      fetchNewName();
+      // fetchNewName();
     }
   }, [appState]);
 
@@ -123,7 +125,9 @@ const Randomizer: React.FC = () => {
                 </AccordionButton>
                 <AccordionPanel>
                   <Stack gap='1rem'>
-                    <ResultItem fieldName='Name:' result={fetchingName ? 'loading' : charName} />
+                      <ResultItem fieldName='Name:' result={
+                        // fetchingName ? 'loading' :
+                          charName} />
                     <ResultItem
                       fieldName='Body Type:'
                       result={results.createCharacter.bodyType}
